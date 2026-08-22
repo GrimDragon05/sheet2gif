@@ -7,7 +7,7 @@
 <meta name="description" content="Drop a sprite sheet, set the tile size, get one GIF per row, or split it into separate sheets.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --void: #16171b;
@@ -20,8 +20,8 @@
     --muted: #8b8f98;
     --danger: #d9695a;
     --radius: 3px;
-    --mono: 'Press Start 2P', ui-monospace, monospace;
-    --sans: 'VT323', ui-monospace, monospace;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
   }
 
   *{ box-sizing: border-box; }
@@ -32,8 +32,7 @@
     background: var(--void);
     color: var(--bone);
     font-family: var(--sans);
-    font-size: 20px;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   body{
@@ -72,12 +71,12 @@
     border-radius: var(--radius);
     padding: 16px 20px;
     font-family: var(--mono);
-    font-size: 17px;
+    font-size: 13px;
     color: var(--bone);
   }
   .load-error h2{
     margin: 0 0 8px;
-    font-size: 17px;
+    font-size: 13px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--danger);
@@ -90,7 +89,7 @@
     color: var(--void);
     border: none;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 12px;
     padding: 8px 14px;
     border-radius: var(--radius);
   }
@@ -118,7 +117,7 @@
     margin: 14px auto 0;
     max-width: 46ch;
     color: var(--muted);
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .privacy-note{
@@ -127,7 +126,7 @@
     gap: 6px;
     margin-top: 18px;
     font-family: var(--mono);
-    font-size: 16px;
+    font-size: 12px;
     color: var(--teal);
     letter-spacing: 0.02em;
   }
@@ -176,11 +175,11 @@
   .table-empty p{
     margin: 0;
     color: var(--muted);
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .table-empty .prompt{
-    font-size: 20px;
+    font-size: 16px;
     color: var(--bone);
   }
 
@@ -189,7 +188,7 @@
     border: none;
     color: var(--amber);
     font-family: var(--sans);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -253,7 +252,7 @@
     background: var(--void);
     border: 1px solid var(--table-edge);
     color: var(--muted);
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.03em;
     padding: 9px 16px;
@@ -282,7 +281,7 @@
 
   .field label{
     font-family: var(--mono);
-    font-size: 15px;
+    font-size: 11px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted);
@@ -294,7 +293,7 @@
     border: 1px solid var(--table-edge);
     color: var(--bone);
     font-family: var(--mono);
-    font-size: 19px;
+    font-size: 15px;
     padding: 8px 10px;
     border-radius: var(--radius);
   }
@@ -312,7 +311,7 @@
     background: var(--void);
     border: 1px solid var(--table-edge);
     color: var(--muted);
-    font-size: 15px;
+    font-size: 11px;
     padding: 6px 9px;
     border-radius: var(--radius);
   }
@@ -327,7 +326,7 @@
     background: var(--void);
     border: 1px solid var(--table-edge);
     color: var(--muted);
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 600;
     padding: 8px 14px;
     border-radius: var(--radius);
@@ -357,7 +356,7 @@
     transition: border-color 0.15s ease, background 0.15s ease;
   }
   .combine-dropzone.dragging{ border-color: var(--amber); background: #262420; }
-  .combine-dropzone p{ margin: 0; color: var(--muted); font-size: 18px; }
+  .combine-dropzone p{ margin: 0; color: var(--muted); font-size: 14px; }
 
   .combine-list{
     margin-top: 18px;
@@ -393,20 +392,20 @@
   .combine-item-info{ min-width: 0; }
   .combine-item-name{
     font-family: var(--mono);
-    font-size: 16px;
+    font-size: 12px;
     color: var(--bone);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .combine-item-dims{ font-size: 15px; color: var(--muted); font-family: var(--mono); }
+  .combine-item-dims{ font-size: 11px; color: var(--muted); font-family: var(--mono); }
 
   .combine-item-actions{ display: flex; gap: 4px; }
   .combine-item-actions button{
     background: none;
     border: 1px solid var(--table-edge);
     color: var(--muted);
-    font-size: 16px;
+    font-size: 12px;
     padding: 6px 8px;
     border-radius: var(--radius);
     line-height: 1;
@@ -427,14 +426,14 @@
     border: 1px solid var(--table-edge);
     color: var(--bone);
     font-family: var(--mono);
-    font-size: 17px;
+    font-size: 13px;
     padding: 8px 10px;
     border-radius: var(--radius);
   }
 
   .grid-meta{
     font-family: var(--mono);
-    font-size: 16px;
+    font-size: 12px;
     color: var(--teal);
     flex: 1 1 200px;
     min-width: 180px;
@@ -445,7 +444,7 @@
   .btn{
     font-family: var(--mono);
     font-weight: 700;
-    font-size: 17px;
+    font-size: 13px;
     letter-spacing: 0.03em;
     padding: 12px 20px;
     border-radius: var(--radius);
@@ -470,7 +469,7 @@
 
   .btn.small{
     padding: 7px 12px;
-    font-size: 15px;
+    font-size: 11px;
   }
 
 
@@ -493,7 +492,7 @@
 
   .frame-picker-header h2{
     font-family: var(--mono);
-    font-size: 17px;
+    font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: 0;
@@ -503,7 +502,7 @@
   .frame-picker-actions{ display: flex; gap: 8px; }
 
   .frame-picker-hint{
-    font-size: 17px;
+    font-size: 13px;
     color: var(--muted);
     margin: 0 0 14px;
   }
@@ -556,7 +555,7 @@
   .progress-panel{
     margin-top: 20px;
     font-family: var(--mono);
-    font-size: 17px;
+    font-size: 13px;
     color: var(--muted);
   }
   .progress-track{
@@ -585,7 +584,7 @@
 
   .reel-header h2{
     font-family: var(--mono);
-    font-size: 19px;
+    font-size: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: 0;
@@ -625,7 +624,7 @@
 
   .filmstrip-label{
     font-family: var(--mono);
-    font-size: 16px;
+    font-size: 12px;
     color: var(--amber);
     letter-spacing: 0.05em;
   }
@@ -645,13 +644,13 @@
 
   .filmstrip-meta{
     font-family: var(--mono);
-    font-size: 16px;
+    font-size: 12px;
     color: var(--muted);
   }
 
   .filmstrip-download{
     font-family: var(--mono);
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--teal);
     text-decoration: none;
@@ -668,7 +667,7 @@
     border-top: 1px dashed var(--table-edge);
     text-align: center;
     color: var(--muted);
-    font-size: 17px;
+    font-size: 13px;
   }
   footer a{ color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
   footer a:hover{ color: var(--amber); }
@@ -697,7 +696,7 @@
 <div class="wrap">
 
   <header class="hero">
-    <h1 class="wordmark">MULTIPURPOSE<span> CONVERTER</span></h1>
+    <h1 class="wordmark">SPRITE<span>//</span>REEL</h1>
     <p class="tagline">Drop a sprite sheet, set the tile size, and walk out with one looping GIF per row — or split the sheet into separate sheets.</p>
     <div class="privacy-note">RUNS ENTIRELY IN YOUR BROWSER</div>
   </header>
@@ -705,7 +704,7 @@
   <div class="load-error" id="loadError" hidden>
     <h2>Could not load the GIF / ZIP engine</h2>
     <p id="loadErrorMsg">The libraries this tool depends on failed to load from every CDN mirror it tried.</p>
-    <p>This is almost always one of: an ad-blocker or privacy extension blocking <code>cdnjs.cloudflare.com</code> / <code>jsdelivr.net</code>, no internet connection, or a restrictive network. Open t[...]
+    <p>This is almost always one of: an ad-blocker or privacy extension blocking <code>cdnjs.cloudflare.com</code> / <code>jsdelivr.net</code>, no internet connection, or a restrictive network. Open the browser console (F12) for the exact error. If you're hosting this on GitHub Pages and the whole page looks blank rather than showing this message, double-check you're opening the <code>*.github.io</code> URL (not a <code>raw.githubusercontent.com</code> link) and that the repo has a <code>.nojekyll</code> file at its root if any folder name starts with an underscore.</p>
     <button id="retryLoadBtn" type="button">Retry</button>
   </div>
 
@@ -796,7 +795,7 @@
 
       <div class="combine-dropzone" id="combineDropzone">
         <input type="file" id="combineFileInput" accept="image/*" multiple hidden>
-        <p>Drag sprite sheets here, or <button id="combineBrowseBtn" type="button" style="background:none;border:none;color:var(--amber);font-family:var(--sans);font-size: 18px;font-weight:600;tex[...]
+        <p>Drag sprite sheets here, or <button id="combineBrowseBtn" type="button" style="background:none;border:none;color:var(--amber);font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:0;cursor:pointer;">browse files</button></p>
       </div>
 
       <div class="combine-list" id="combineList"></div>
@@ -999,3 +998,676 @@
     if(!file || !file.type.startsWith('image/')){
       alert('That does not look like an image. Try a PNG or JPG sprite sheet.');
       return;
+    }
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      state.image = img;
+      state.naturalW = img.naturalWidth;
+      state.naturalH = img.naturalHeight;
+      drawSheet();
+      showLoadedState();
+      URL.revokeObjectURL(url);
+    };
+    img.onerror = () => {
+      alert('Could not read that image file.');
+    };
+    img.src = url;
+  }
+
+  browseBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    if(e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
+  });
+
+  ['dragenter','dragover'].forEach(evt => {
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragging');
+    });
+  });
+  ['dragleave','drop'].forEach(evt => {
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragging');
+    });
+  });
+  dropzone.addEventListener('drop', (e) => {
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if(file) handleFile(file);
+  });
+  dropzone.addEventListener('click', (e) => {
+    if(loadedState.hidden === false) return;
+    if(e.target === browseBtn) return;
+    fileInput.click();
+  });
+
+  // ---------- Mode switching ----------
+
+  function setMode(mode){
+    state.mode = mode;
+    gifModeTab.classList.toggle('active', mode === 'gif');
+    splitModeTab.classList.toggle('active', mode === 'split');
+    combineModeTab.classList.toggle('active', mode === 'combine');
+
+    const isCombine = mode === 'combine';
+    dropzone.hidden = isCombine;
+    controls.hidden = isCombine || !state.image;
+    combinePanel.hidden = !isCombine;
+
+    fpsField.hidden = mode !== 'gif';
+    directionField.hidden = mode !== 'split';
+    framePicker.hidden = mode !== 'gif' || !state.image;
+    if(!isCombine) actionBtn.textContent = mode === 'gif' ? 'Cut into GIFs' : 'Split sheet';
+
+    reel.hidden = true;
+    filmstrips.innerHTML = '';
+    state.outputs = [];
+    if(!isCombine && state.image) updateGridOverlay();
+  }
+  gifModeTab.addEventListener('click', () => setMode('gif'));
+  splitModeTab.addEventListener('click', () => setMode('split'));
+  combineModeTab.addEventListener('click', () => setMode('combine'));
+
+  function setDirection(dir){
+    state.direction = dir;
+    dirRowBtn.classList.toggle('active', dir === 'row');
+    dirColBtn.classList.toggle('active', dir === 'col');
+    if(state.image) updateGridOverlay();
+  }
+  dirRowBtn.addEventListener('click', () => setDirection('row'));
+  dirColBtn.addEventListener('click', () => setDirection('col'));
+
+  // ---------- Drawing + grid overlay ----------
+
+  function drawSheet(){
+    canvas.width = state.naturalW;
+    canvas.height = state.naturalH;
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(state.image, 0, 0);
+    requestAnimationFrame(updateGridOverlay);
+  }
+
+  function showLoadedState(){
+    emptyState.hidden = true;
+    loadedState.hidden = false;
+    controls.hidden = false;
+    reel.hidden = true;
+    filmstrips.innerHTML = '';
+    state.outputs = [];
+  }
+
+  function currentTileSize(){
+    let w = parseInt(tileWInput.value, 10);
+    let h = parseInt(tileHInput.value, 10);
+    if(!w || w < 1) w = 1;
+    if(!h || h < 1) h = 1;
+    return { w, h };
+  }
+
+  let overlayRebuildTimer = null;
+
+  function updateGridOverlay(){
+    if(!state.image) return;
+    const { w: tileW, h: tileH } = currentTileSize();
+    const rect = canvas.getBoundingClientRect();
+
+    gridOverlay.style.width = rect.width + 'px';
+    gridOverlay.style.height = rect.height + 'px';
+
+    const scaleX = rect.width / state.naturalW;
+    const scaleY = rect.height / state.naturalH;
+    gridOverlay.style.backgroundSize = (tileW * scaleX) + 'px ' + (tileH * scaleY) + 'px';
+
+    const cols = Math.floor(state.naturalW / tileW);
+    const rows = Math.floor(state.naturalH / tileH);
+    const remW = state.naturalW - cols * tileW;
+    const remH = state.naturalH - rows * tileH;
+
+    if(cols < 1 || rows < 1){
+      gridMeta.textContent = 'Tile size is larger than the sheet.';
+      gridMeta.classList.add('warn');
+      actionBtn.disabled = true;
+      framePicker.hidden = true;
+      return;
+    }
+
+    state.cols = cols;
+    state.rows = rows;
+
+    let msg;
+    if(state.mode === 'gif'){
+      msg = cols + ' col' + (cols === 1 ? '' : 's') + ' × ' + rows + ' row' + (rows === 1 ? '' : 's')
+        + ' → ' + rows + ' GIF' + (rows === 1 ? '' : 's') + ', up to ' + cols + ' frame' + (cols === 1 ? '' : 's') + ' each';
+    }else{
+      const pieces = state.direction === 'row' ? rows : cols;
+      const noun = state.direction === 'row' ? 'row-sheet' : 'column-sheet';
+      msg = cols + ' col' + (cols === 1 ? '' : 's') + ' × ' + rows + ' row' + (rows === 1 ? '' : 's')
+        + ' → ' + pieces + ' ' + noun + (pieces === 1 ? '' : 's');
+    }
+    if(remW > 0 || remH > 0){
+      msg += ' (' + remW + '×' + remH + 'px trimmed off the edge)';
+    }
+    gridMeta.textContent = msg;
+    gridMeta.classList.remove('warn');
+    actionBtn.disabled = false;
+
+    if(state.mode === 'gif'){
+      framePicker.hidden = false;
+      clearTimeout(overlayRebuildTimer);
+      overlayRebuildTimer = setTimeout(() => rebuildFramePicker(cols, rows, tileW, tileH), 150);
+    }else{
+      framePicker.hidden = true;
+    }
+  }
+
+  [tileWInput, tileHInput].forEach(input => {
+    input.addEventListener('input', updateGridOverlay);
+  });
+  window.addEventListener('resize', () => {
+    if(state.image) updateGridOverlay();
+  });
+
+  presetChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const size = chip.getAttribute('data-size');
+      tileWInput.value = size;
+      tileHInput.value = size;
+      updateGridOverlay();
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    state.image = null;
+    fileInput.value = '';
+    emptyState.hidden = false;
+    loadedState.hidden = true;
+    controls.hidden = true;
+    framePicker.hidden = true;
+    reel.hidden = true;
+    filmstrips.innerHTML = '';
+    state.outputs = [];
+  });
+
+  // ---------- Frame picker (GIF mode) ----------
+
+  function rebuildFramePicker(cols, rows, tileW, tileH){
+    if(state.mode !== 'gif') return;
+
+    const prev = state.frameEnabled;
+    const sameShape = prev.length === rows && prev[0] && prev[0].length === cols;
+    const enabled = [];
+    for(let r = 0; r < rows; r++){
+      enabled.push([]);
+      for(let c = 0; c < cols; c++){
+        enabled[r].push(sameShape ? prev[r][c] : true);
+      }
+    }
+    state.frameEnabled = enabled;
+    state.frameCells = [];
+
+    frameGrid.innerHTML = '';
+    frameGrid.style.gridTemplateColumns = 'repeat(' + cols + ', minmax(18px, 1fr))';
+
+    for(let r = 0; r < rows; r++){
+      for(let c = 0; c < cols; c++){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'frame-tile';
+        btn.title = 'Row ' + (r + 1) + ', frame ' + (c + 1);
+        if(!enabled[r][c]) btn.classList.add('disabled');
+
+        const thumb = document.createElement('canvas');
+        thumb.width = tileW;
+        thumb.height = tileH;
+        const tctx = thumb.getContext('2d', { willReadFrequently: true });
+        tctx.imageSmoothingEnabled = false;
+        tctx.drawImage(state.image, c * tileW, r * tileH, tileW, tileH, 0, 0, tileW, tileH);
+
+        btn.appendChild(thumb);
+        btn.addEventListener('click', () => {
+          state.frameEnabled[r][c] = !state.frameEnabled[r][c];
+          btn.classList.toggle('disabled', !state.frameEnabled[r][c]);
+        });
+
+        frameGrid.appendChild(btn);
+        state.frameCells.push({ row: r, col: c, el: btn, canvas: thumb });
+      }
+    }
+  }
+
+  detectBlankBtn.addEventListener('click', () => {
+    const ALPHA_THRESHOLD = 8;
+    state.frameCells.forEach(cell => {
+      const tctx = cell.canvas.getContext('2d', { willReadFrequently: true });
+      const data = tctx.getImageData(0, 0, cell.canvas.width, cell.canvas.height).data;
+      let allTransparent = true;
+      for(let i = 3; i < data.length; i += 4){
+        if(data[i] > ALPHA_THRESHOLD){ allTransparent = false; break; }
+      }
+      if(allTransparent){
+        state.frameEnabled[cell.row][cell.col] = false;
+        cell.el.classList.add('disabled');
+      }
+    });
+  });
+
+  enableAllBtn.addEventListener('click', () => {
+    state.frameCells.forEach(cell => {
+      state.frameEnabled[cell.row][cell.col] = true;
+      cell.el.classList.remove('disabled');
+    });
+  });
+
+  // ---------- Progress + output list ----------
+
+  function setProgress(visible, label, fraction){
+    progress.hidden = !visible;
+    if(label !== undefined) progressLabel.textContent = label;
+    if(fraction !== undefined) progressFill.style.width = Math.round(fraction * 100) + '%';
+  }
+
+  function addOutputCard({ filename, blob, kind, label, metaText, skipped }){
+    const url = skipped ? null : URL.createObjectURL(blob);
+    const card = document.createElement('div');
+    card.className = 'filmstrip' + (skipped ? ' skipped' : '');
+    const img = skipped ? '' :
+      '<img class="filmstrip-gif" src="' + url + '" alt="' + label + '">';
+    const dl = skipped ?
+      '<span class="filmstrip-download" style="opacity:.4;pointer-events:none;">No frames</span>' :
+      '<a class="filmstrip-download" href="' + url + '" download="' + filename + '">Download ' + (kind === 'gif' ? 'GIF' : 'PNG') + '</a>';
+    card.innerHTML =
+      '<div class="sprockets"></div>' +
+      '<div class="filmstrip-body">' +
+        '<div class="filmstrip-label">' + label + '</div>' +
+        img +
+        '<div class="filmstrip-meta">' + metaText + '</div>' +
+        dl +
+      '</div>' +
+      '<div class="sprockets"></div>';
+    filmstrips.appendChild(card);
+    if(!skipped) state.outputs.push({ filename, blob, url, kind });
+  }
+
+  // ---------- GIF mode ----------
+
+  function gifFrameToGif(rowIndex, colsToRender, tileW, tileH, fps, rowNumber, totalRows){
+    return getWorkerScriptUrl().then(workerScriptUrl => new Promise((resolve, reject) => {
+      const gif = new GIF({
+        workers: 2,
+        quality: 10,
+        width: tileW,
+        height: tileH,
+        workerScript: workerScriptUrl,
+        transparent: null
+      });
+
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = tileW;
+      tempCanvas.height = tileH;
+      const tctx = tempCanvas.getContext('2d', { willReadFrequently: true });
+      tctx.imageSmoothingEnabled = false;
+
+      const delay = Math.max(1, Math.round(1000 / fps));
+
+      colsToRender.forEach(c => {
+        tctx.clearRect(0, 0, tileW, tileH);
+        tctx.drawImage(
+          state.image,
+          c * tileW, rowIndex * tileH, tileW, tileH,
+          0, 0, tileW, tileH
+        );
+        gif.addFrame(tctx, { copy: true, delay });
+      });
+
+      gif.on('progress', (p) => {
+        const overall = (rowNumber - 1 + p) / totalRows;
+        setProgress(true, 'Cutting row ' + rowNumber + ' of ' + totalRows + '…', overall);
+      });
+      gif.on('finished', (blob) => resolve(blob));
+      try{
+        gif.render();
+      }catch(err){
+        reject(err);
+      }
+    }));
+  }
+
+  async function processGifs(){
+    const { w: tileW, h: tileH } = currentTileSize();
+    const fps = Math.max(1, parseInt(fpsInput.value, 10) || 8);
+    const cols = state.cols, rows = state.rows;
+
+    actionBtn.disabled = true;
+    filmstrips.innerHTML = '';
+    reel.hidden = false;
+    reelTitle.textContent = 'Output reel';
+    state.outputs = [];
+    setProgress(true, 'Starting…', 0);
+
+    try{
+      for(let r = 0; r < rows; r++){
+        const colsToRender = [];
+        for(let c = 0; c < cols; c++){
+          if(!state.frameEnabled[r] || state.frameEnabled[r][c] !== false) colsToRender.push(c);
+        }
+        if(colsToRender.length === 0){
+          addOutputCard({
+            kind: 'gif', label: 'ROW ' + String(r + 1).padStart(2, '0'),
+            metaText: 'All frames excluded — skipped', skipped: true
+          });
+          continue;
+        }
+        const blob = await gifFrameToGif(r, colsToRender, tileW, tileH, fps, r + 1, rows);
+        addOutputCard({
+          filename: 'row-' + (r + 1) + '.gif',
+          blob, kind: 'gif',
+          label: 'ROW ' + String(r + 1).padStart(2, '0'),
+          metaText: colsToRender.length + ' frame' + (colsToRender.length === 1 ? '' : 's') + ' · ' + tileW + '×' + tileH + 'px'
+        });
+      }
+      setProgress(false);
+    }catch(err){
+      console.error(err);
+      setProgress(false);
+      alert('Something went wrong while building the GIFs (' + (err && err.message ? err.message : 'see console') + '). If you are offline, this tool needs one-time internet access to load its GIF encoder.');
+    }finally{
+      actionBtn.disabled = false;
+    }
+  }
+
+  // ---------- Split-sheet mode ----------
+
+  function sliceToBlob(sx, sy, sw, sh){
+    return new Promise((resolve, reject) => {
+      const c = document.createElement('canvas');
+      c.width = sw;
+      c.height = sh;
+      const cctx = c.getContext('2d');
+      cctx.imageSmoothingEnabled = false;
+      cctx.drawImage(state.image, sx, sy, sw, sh, 0, 0, sw, sh);
+      c.toBlob(blob => blob ? resolve(blob) : reject(new Error('toBlob failed')), 'image/png');
+    });
+  }
+
+  async function processSplit(){
+    const { w: tileW, h: tileH } = currentTileSize();
+    const cols = state.cols, rows = state.rows;
+    const byRow = state.direction === 'row';
+    const total = byRow ? rows : cols;
+
+    actionBtn.disabled = true;
+    filmstrips.innerHTML = '';
+    reel.hidden = false;
+    reelTitle.textContent = 'Split sheets';
+    state.outputs = [];
+    setProgress(true, 'Starting…', 0);
+
+    try{
+      for(let i = 0; i < total; i++){
+        setProgress(true, 'Slicing ' + (byRow ? 'row' : 'column') + ' ' + (i + 1) + ' of ' + total + '…', i / total);
+        const sx = byRow ? 0 : i * tileW;
+        const sy = byRow ? i * tileH : 0;
+        const sw = byRow ? cols * tileW : tileW;
+        const sh = byRow ? tileH : rows * tileH;
+        const blob = await sliceToBlob(sx, sy, sw, sh);
+        const label = (byRow ? 'ROW ' : 'COL ') + String(i + 1).padStart(2, '0');
+        const filename = (byRow ? 'row-' : 'col-') + (i + 1) + '.png';
+        const tiles = byRow ? cols : rows;
+        addOutputCard({
+          filename, blob, kind: 'png', label,
+          metaText: tiles + ' tile' + (tiles === 1 ? '' : 's') + ' · ' + sw + '×' + sh + 'px'
+        });
+      }
+      setProgress(false);
+    }catch(err){
+      console.error(err);
+      setProgress(false);
+      alert('Something went wrong while splitting the sheet (' + (err && err.message ? err.message : 'see console') + ').');
+    }finally{
+      actionBtn.disabled = false;
+    }
+  }
+
+  actionBtn.addEventListener('click', () => {
+    if(!state.image) return;
+    if(state.mode === 'gif') processGifs();
+    else processSplit();
+  });
+
+  // ---------- Zip download ----------
+
+  async function zipAll(){
+    if(!state.outputs.length) return;
+    zipBtn.disabled = true;
+    const originalLabel = zipBtn.textContent;
+    zipBtn.textContent = 'Zipping…';
+    try{
+      const zip = new JSZip();
+      state.outputs.forEach(({ filename, blob }) => {
+        zip.file(filename, blob);
+      });
+      const content = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(content);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sprite-reel-output.zip';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+    }catch(err){
+      console.error(err);
+      alert('Could not build the zip file. Check the console for details.');
+    }finally{
+      zipBtn.disabled = false;
+      zipBtn.textContent = originalLabel;
+    }
+  }
+
+  zipBtn.addEventListener('click', zipAll);
+
+  // ---------- Combine sheets ----------
+
+  let combineIdSeq = 0;
+
+  function loadImageFile(file){
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        resolve({ id: ++combineIdSeq, name: file.name, img, naturalW: img.naturalWidth, naturalH: img.naturalHeight, url });
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Could not read ' + file.name)); };
+      img.src = url;
+    });
+  }
+
+  async function handleCombineFiles(fileList){
+    const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
+    if(!files.length) return;
+    for(const file of files){
+      try{
+        const item = await loadImageFile(file);
+        state.combineItems.push(item);
+      }catch(err){
+        console.error(err);
+      }
+    }
+    renderCombineList();
+  }
+
+  function renderCombineList(){
+    combineList.innerHTML = '';
+    state.combineItems.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'combine-item';
+      row.innerHTML =
+        '<img src="' + item.url + '" alt="">' +
+        '<div class="combine-item-info">' +
+          '<div class="combine-item-name">' + item.name + '</div>' +
+          '<div class="combine-item-dims">' + item.naturalW + '×' + item.naturalH + 'px</div>' +
+        '</div>' +
+        '<div class="combine-item-actions">' +
+          '<button type="button" data-act="up" ' + (i === 0 ? 'disabled' : '') + '>\u2191</button>' +
+          '<button type="button" data-act="down" ' + (i === state.combineItems.length - 1 ? 'disabled' : '') + '>\u2193</button>' +
+          '<button type="button" data-act="remove">\u2715</button>' +
+        '</div>';
+      row.querySelector('[data-act="up"]').addEventListener('click', () => {
+        if(i === 0) return;
+        [state.combineItems[i - 1], state.combineItems[i]] = [state.combineItems[i], state.combineItems[i - 1]];
+        renderCombineList();
+      });
+      row.querySelector('[data-act="down"]').addEventListener('click', () => {
+        if(i === state.combineItems.length - 1) return;
+        [state.combineItems[i + 1], state.combineItems[i]] = [state.combineItems[i], state.combineItems[i + 1]];
+        renderCombineList();
+      });
+      row.querySelector('[data-act="remove"]').addEventListener('click', () => {
+        state.combineItems.splice(i, 1);
+        renderCombineList();
+      });
+      combineList.appendChild(row);
+    });
+  }
+
+  combineBrowseBtn.addEventListener('click', () => combineFileInput.click());
+  combineFileInput.addEventListener('change', (e) => {
+    handleCombineFiles(e.target.files);
+    combineFileInput.value = '';
+  });
+  ['dragenter','dragover'].forEach(evt => {
+    combineDropzone.addEventListener(evt, (e) => { e.preventDefault(); combineDropzone.classList.add('dragging'); });
+  });
+  ['dragleave','drop'].forEach(evt => {
+    combineDropzone.addEventListener(evt, (e) => { e.preventDefault(); combineDropzone.classList.remove('dragging'); });
+  });
+  combineDropzone.addEventListener('drop', (e) => {
+    const files = e.dataTransfer && e.dataTransfer.files;
+    if(files) handleCombineFiles(files);
+  });
+  combineDropzone.addEventListener('click', (e) => {
+    if(e.target === combineBrowseBtn) return;
+    combineFileInput.click();
+  });
+
+  combineDirVBtn.addEventListener('click', () => {
+    state.combineDirection = 'vertical';
+    combineDirVBtn.classList.add('active');
+    combineDirHBtn.classList.remove('active');
+  });
+  combineDirHBtn.addEventListener('click', () => {
+    state.combineDirection = 'horizontal';
+    combineDirHBtn.classList.add('active');
+    combineDirVBtn.classList.remove('active');
+  });
+
+  combineClearBtn.addEventListener('click', () => {
+    state.combineItems = [];
+    renderCombineList();
+  });
+
+  function buildCombinedCanvas(){
+    const items = state.combineItems;
+    const align = combineAlignSelect.value;
+    const vertical = state.combineDirection === 'vertical';
+    const canvas = document.createElement('canvas');
+    const cctx = canvas.getContext('2d');
+    cctx.imageSmoothingEnabled = false;
+
+    if(vertical){
+      const targetW = Math.max(...items.map(it => it.naturalW));
+      const rendered = items.map(it => {
+        if(align === 'scale'){
+          const scale = targetW / it.naturalW;
+          return { w: targetW, h: Math.round(it.naturalH * scale), img: it.img, srcW: it.naturalW, srcH: it.naturalH };
+        }
+        return { w: it.naturalW, h: it.naturalH, img: it.img, srcW: it.naturalW, srcH: it.naturalH };
+      });
+      canvas.width = targetW;
+      canvas.height = rendered.reduce((s, r) => s + r.h, 0);
+      let y = 0;
+      rendered.forEach(r => {
+        cctx.drawImage(r.img, 0, 0, r.srcW, r.srcH, 0, y, r.w, r.h);
+        y += r.h;
+      });
+    }else{
+      const targetH = Math.max(...items.map(it => it.naturalH));
+      const rendered = items.map(it => {
+        if(align === 'scale'){
+          const scale = targetH / it.naturalH;
+          return { w: Math.round(it.naturalW * scale), h: targetH, img: it.img, srcW: it.naturalW, srcH: it.naturalH };
+        }
+        return { w: it.naturalW, h: it.naturalH, img: it.img, srcW: it.naturalW, srcH: it.naturalH };
+      });
+      canvas.width = rendered.reduce((s, r) => s + r.w, 0);
+      canvas.height = targetH;
+      let x = 0;
+      rendered.forEach(r => {
+        cctx.drawImage(r.img, 0, 0, r.srcW, r.srcH, x, 0, r.w, r.h);
+        x += r.w;
+      });
+    }
+    return canvas;
+  }
+
+  combineBtn.addEventListener('click', () => {
+    if(state.combineItems.length < 2){
+      alert('Add at least two sprite sheets to combine.');
+      return;
+    }
+    let canvas;
+    try{
+      canvas = buildCombinedCanvas();
+    }catch(err){
+      console.error(err);
+      alert('Could not combine those sheets. Check the console for details.');
+      return;
+    }
+    canvas.toBlob(blob => {
+      if(!blob){ alert('Could not export the combined sheet.'); return; }
+      const url = URL.createObjectURL(blob);
+      reel.hidden = false;
+      reelTitle.textContent = 'Combined sheet';
+      filmstrips.innerHTML = '';
+      state.outputs = [{ filename: 'combined-sheet.png', blob, url, kind: 'png' }];
+
+      const card = document.createElement('div');
+      card.className = 'filmstrip';
+      card.innerHTML =
+        '<div class="sprockets"></div>' +
+        '<div class="filmstrip-body">' +
+          '<div class="filmstrip-label">COMBINED</div>' +
+          '<img class="filmstrip-gif" src="' + url + '" alt="Combined sprite sheet">' +
+          '<div class="filmstrip-meta">' + canvas.width + '×' + canvas.height + 'px · ' + state.combineItems.length + ' sheets</div>' +
+          '<div style="display:flex;gap:8px;">' +
+            '<a class="filmstrip-download" href="' + url + '" download="combined-sheet.png">Download PNG</a>' +
+            '<button class="btn ghost small" type="button" id="useCombinedBtn">Use as sheet</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="sprockets"></div>';
+      filmstrips.appendChild(card);
+
+      card.querySelector('#useCombinedBtn').addEventListener('click', () => {
+        const img = new Image();
+        img.onload = () => {
+          state.image = img;
+          state.naturalW = img.naturalWidth;
+          state.naturalH = img.naturalHeight;
+          setMode('gif');
+          drawSheet();
+          showLoadedState();
+          window.scrollTo({ top: dropzone.offsetTop - 20, behavior: 'smooth' });
+        };
+        img.src = url;
+      });
+    }, 'image/png');
+  });
+
+  }
+
+})();
+</script>
+</body>
+</html>
