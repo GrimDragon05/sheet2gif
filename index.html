@@ -1315,7 +1315,43 @@
 
   // ---------- GIF mode ----------
 
-  function gifFrameToGif(byRow, lineIndex, framesToRender, tileW, tileH, fps, lineNumber, totalLines){
+  // GIFs have no real alpha channel — each pixel is either fully opaque or
+  // fully transparent. To convert a sprite sheet's soft/antialiased alpha
+  // into that, we composite each frame onto a solid "chroma key" background
+  // color first (so edges blend naturally instead of showing raw, unblended
+  // pixel data), then tell the encoder to treat that exact color as
+  // transparent. The key is picked per-image so it doesn't collide with a
+  // color actually used in the sprite.
+  const CHROMA_CANDIDATES = [
+    [255, 0, 255],   // magenta
+    [0, 255, 0],    // lime green
+    [0, 255, 255],   // cyan
+    [255, 0, 128],   // pink
+    [128, 0, 255]    // violet
+  ];
+
+  function findChromaKey(img, naturalW, naturalH){
+    const c = document.createElement('canvas');
+    c.width = naturalW;
+    c.height = naturalH;
+    const cctx = c.getContext('2d', { willReadFrequently: true });
+    cctx.imageSmoothingEnabled = false;
+    cctx.drawImage(img, 0, 0);
+    const data = cctx.getImageData(0, 0, naturalW, naturalH).data;
+    const used = new Set();
+    for(let i = 0; i < data.length; i += 4){
+      if(data[i + 3] > 0) used.add(data[i] + ',' + data[i + 1] + ',' + data[i + 2]);
+    }
+    for(const [r, g, b] of CHROMA_CANDIDATES){
+      if(!used.has(r + ',' + g + ',' + b)) return { r, g, b };
+    }
+    // Extremely unlikely fallback: nudge magenta until it's unused.
+    let r = 255, g = 0, b = 255;
+    while(used.has(r + ',' + g + ',' + b)) b = (b + 17) % 256;
+    return { r, g, b };
+  }
+
+  function gifFrameToGif(byRow, lineIndex, framesToRender, tileW, tileH, fps, lineNumber, totalLines, chroma){
     return getWorkerScriptUrl().then(workerScriptUrl => new Promise((resolve, reject) => {
       const gif = new GIF({
         workers: 2,
@@ -1323,7 +1359,7 @@
         width: tileW,
         height: tileH,
         workerScript: workerScriptUrl,
-        transparent: null
+        transparent: (chroma.r << 16) | (chroma.g << 8) | chroma.b
       });
 
       const tempCanvas = document.createElement('canvas');
@@ -1331,6 +1367,7 @@
       tempCanvas.height = tileH;
       const tctx = tempCanvas.getContext('2d', { willReadFrequently: true });
       tctx.imageSmoothingEnabled = false;
+      const bgStyle = 'rgb(' + chroma.r + ',' + chroma.g + ',' + chroma.b + ')';
 
       const delay = Math.max(1, Math.round(1000 / fps));
       const noun = byRow ? 'row' : 'column';
@@ -1338,7 +1375,8 @@
       framesToRender.forEach(f => {
         const sx = byRow ? f * tileW : lineIndex * tileW;
         const sy = byRow ? lineIndex * tileH : f * tileH;
-        tctx.clearRect(0, 0, tileW, tileH);
+        tctx.fillStyle = bgStyle;
+        tctx.fillRect(0, 0, tileW, tileH);
         tctx.drawImage(
           state.image,
           sx, sy, tileW, tileH,
@@ -1369,6 +1407,7 @@
     const framesPerLine = byRow ? cols : rows;
     const label = byRow ? 'ROW ' : 'COL ';
     const filePrefix = byRow ? 'row-' : 'col-';
+    const chroma = findChromaKey(state.image, state.naturalW, state.naturalH);
 
     actionBtn.disabled = true;
     filmstrips.innerHTML = '';
@@ -1392,7 +1431,7 @@
           });
           continue;
         }
-        const blob = await gifFrameToGif(byRow, i, framesToRender, tileW, tileH, fps, i + 1, totalLines);
+        const blob = await gifFrameToGif(byRow, i, framesToRender, tileW, tileH, fps, i + 1, totalLines, chroma);
         addOutputCard({
           filename: filePrefix + (i + 1) + '.gif',
           blob, kind: 'gif',
