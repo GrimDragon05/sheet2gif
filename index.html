@@ -735,7 +735,7 @@
 
     <section class="controls" id="controls" hidden>
       <div class="mode-tabs">
-        <button type="button" class="mode-tab active" id="gifModeTab" data-mode="gif">GIF reel (per row)</button>
+        <button type="button" class="mode-tab active" id="gifModeTab" data-mode="gif">GIF reel</button>
         <button type="button" class="mode-tab" id="splitModeTab" data-mode="split">Split sheet</button>
         <button type="button" class="mode-tab" id="combineModeTab" data-mode="combine">Combine sheets</button>
       </div>
@@ -753,8 +753,8 @@
           <label for="fps">Frames / sec</label>
           <input type="number" id="fps" value="8" min="1" max="60">
         </div>
-        <div class="field" id="directionField" hidden>
-          <label>Split by</label>
+        <div class="field" id="directionField">
+          <label id="directionLabel">Frames run</label>
           <div class="direction-toggle">
             <button type="button" class="direction-chip active" id="dirRowBtn" data-dir="row">Row</button>
             <button type="button" class="direction-chip" id="dirColBtn" data-dir="col">Column</button>
@@ -783,7 +783,7 @@
           <button class="btn ghost small" id="enableAllBtn" type="button">Enable all</button>
         </div>
       </div>
-      <p class="frame-picker-hint">Click a tile to exclude it from its row's GIF — useful for empty or transparent frames at the end of a row.</p>
+      <p class="frame-picker-hint" id="framePickerHint">Click a tile to exclude it from its row's GIF — useful for empty or transparent frames at the end of a row.</p>
       <div class="frame-grid" id="frameGrid"></div>
     </section>
 
@@ -926,6 +926,8 @@
   const splitModeTab    = document.getElementById('splitModeTab');
   const fpsField      = document.getElementById('fpsField');
   const directionField   = document.getElementById('directionField');
+  const directionLabel   = document.getElementById('directionLabel');
+  const framePickerHint   = document.getElementById('framePickerHint');
   const dirRowBtn      = document.getElementById('dirRowBtn');
   const dirColBtn      = document.getElementById('dirColBtn');
   const tileWInput     = document.getElementById('tileW');
@@ -1056,9 +1058,12 @@
     combinePanel.hidden = !isCombine;
 
     fpsField.hidden = mode !== 'gif';
-    directionField.hidden = mode !== 'split';
+    directionField.hidden = isCombine;
+    directionLabel.textContent = mode === 'gif' ? 'Frames run' : 'Split by';
     framePicker.hidden = mode !== 'gif' || !state.image;
     if(!isCombine) actionBtn.textContent = mode === 'gif' ? 'Cut into GIFs' : 'Split sheet';
+    updateGifModeLabel();
+    updateFramePickerHint();
 
     reel.hidden = true;
     filmstrips.innerHTML = '';
@@ -1069,14 +1074,30 @@
   splitModeTab.addEventListener('click', () => setMode('split'));
   combineModeTab.addEventListener('click', () => setMode('combine'));
 
+  function updateGifModeLabel(){
+    gifModeTab.textContent = state.mode === 'gif'
+      ? (state.direction === 'row' ? 'GIF reel (per row)' : 'GIF reel (per column)')
+      : 'GIF reel';
+  }
+
+  function updateFramePickerHint(){
+    if(state.mode !== 'gif') return;
+    framePickerHint.textContent = state.direction === 'row'
+      ? "Click a tile to exclude it from its row's GIF — useful for empty or transparent frames at the end of a row."
+      : "Click a tile to exclude it from its column's GIF — useful for empty or transparent frames at the end of a column.";
+  }
+
   function setDirection(dir){
     state.direction = dir;
     dirRowBtn.classList.toggle('active', dir === 'row');
     dirColBtn.classList.toggle('active', dir === 'col');
+    updateGifModeLabel();
+    updateFramePickerHint();
     if(state.image) updateGridOverlay();
   }
   dirRowBtn.addEventListener('click', () => setDirection('row'));
   dirColBtn.addEventListener('click', () => setDirection('col'));
+  updateGifModeLabel();
 
   // ---------- Drawing + grid overlay ----------
 
@@ -1138,8 +1159,10 @@
 
     let msg;
     if(state.mode === 'gif'){
+      const gifs = state.direction === 'row' ? rows : cols;
+      const framesEach = state.direction === 'row' ? cols : rows;
       msg = cols + ' col' + (cols === 1 ? '' : 's') + ' × ' + rows + ' row' + (rows === 1 ? '' : 's')
-        + ' → ' + rows + ' GIF' + (rows === 1 ? '' : 's') + ', up to ' + cols + ' frame' + (cols === 1 ? '' : 's') + ' each';
+        + ' → ' + gifs + ' GIF' + (gifs === 1 ? '' : 's') + ', up to ' + framesEach + ' frame' + (framesEach === 1 ? '' : 's') + ' each';
     }else{
       const pieces = state.direction === 'row' ? rows : cols;
       const noun = state.direction === 'row' ? 'row-sheet' : 'column-sheet';
@@ -1292,7 +1315,7 @@
 
   // ---------- GIF mode ----------
 
-  function gifFrameToGif(rowIndex, colsToRender, tileW, tileH, fps, rowNumber, totalRows){
+  function gifFrameToGif(byRow, lineIndex, framesToRender, tileW, tileH, fps, lineNumber, totalLines){
     return getWorkerScriptUrl().then(workerScriptUrl => new Promise((resolve, reject) => {
       const gif = new GIF({
         workers: 2,
@@ -1310,20 +1333,23 @@
       tctx.imageSmoothingEnabled = false;
 
       const delay = Math.max(1, Math.round(1000 / fps));
+      const noun = byRow ? 'row' : 'column';
 
-      colsToRender.forEach(c => {
+      framesToRender.forEach(f => {
+        const sx = byRow ? f * tileW : lineIndex * tileW;
+        const sy = byRow ? lineIndex * tileH : f * tileH;
         tctx.clearRect(0, 0, tileW, tileH);
         tctx.drawImage(
           state.image,
-          c * tileW, rowIndex * tileH, tileW, tileH,
+          sx, sy, tileW, tileH,
           0, 0, tileW, tileH
         );
         gif.addFrame(tctx, { copy: true, delay });
       });
 
       gif.on('progress', (p) => {
-        const overall = (rowNumber - 1 + p) / totalRows;
-        setProgress(true, 'Cutting row ' + rowNumber + ' of ' + totalRows + '…', overall);
+        const overall = (lineNumber - 1 + p) / totalLines;
+        setProgress(true, 'Cutting ' + noun + ' ' + lineNumber + ' of ' + totalLines + '…', overall);
       });
       gif.on('finished', (blob) => resolve(blob));
       try{
@@ -1338,6 +1364,11 @@
     const { w: tileW, h: tileH } = currentTileSize();
     const fps = Math.max(1, parseInt(fpsInput.value, 10) || 8);
     const cols = state.cols, rows = state.rows;
+    const byRow = state.direction === 'row';
+    const totalLines = byRow ? rows : cols;
+    const framesPerLine = byRow ? cols : rows;
+    const label = byRow ? 'ROW ' : 'COL ';
+    const filePrefix = byRow ? 'row-' : 'col-';
 
     actionBtn.disabled = true;
     filmstrips.innerHTML = '';
@@ -1347,24 +1378,26 @@
     setProgress(true, 'Starting…', 0);
 
     try{
-      for(let r = 0; r < rows; r++){
-        const colsToRender = [];
-        for(let c = 0; c < cols; c++){
-          if(!state.frameEnabled[r] || state.frameEnabled[r][c] !== false) colsToRender.push(c);
+      for(let i = 0; i < totalLines; i++){
+        const framesToRender = [];
+        for(let f = 0; f < framesPerLine; f++){
+          const r = byRow ? i : f;
+          const c = byRow ? f : i;
+          if(!state.frameEnabled[r] || state.frameEnabled[r][c] !== false) framesToRender.push(f);
         }
-        if(colsToRender.length === 0){
+        if(framesToRender.length === 0){
           addOutputCard({
-            kind: 'gif', label: 'ROW ' + String(r + 1).padStart(2, '0'),
+            kind: 'gif', label: label + String(i + 1).padStart(2, '0'),
             metaText: 'All frames excluded — skipped', skipped: true
           });
           continue;
         }
-        const blob = await gifFrameToGif(r, colsToRender, tileW, tileH, fps, r + 1, rows);
+        const blob = await gifFrameToGif(byRow, i, framesToRender, tileW, tileH, fps, i + 1, totalLines);
         addOutputCard({
-          filename: 'row-' + (r + 1) + '.gif',
+          filename: filePrefix + (i + 1) + '.gif',
           blob, kind: 'gif',
-          label: 'ROW ' + String(r + 1).padStart(2, '0'),
-          metaText: colsToRender.length + ' frame' + (colsToRender.length === 1 ? '' : 's') + ' · ' + tileW + '×' + tileH + 'px'
+          label: label + String(i + 1).padStart(2, '0'),
+          metaText: framesToRender.length + ' frame' + (framesToRender.length === 1 ? '' : 's') + ' · ' + tileW + '×' + tileH + 'px'
         });
       }
       setProgress(false);
