@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprite // Reel — sprite sheet to GIF</title>
-<meta name="description" content="Drop a sprite sheet, set the tile size, get one GIF per row, or split it into separate sheets. Runs entirely in your browser.">
+<title>Multipurpose Converter</title>
+<meta name="description" content="Drop a sprite sheet, set the tile size, get one GIF per row, or split it into separate sheets.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -139,8 +139,6 @@
     box-shadow: 0 0 0 3px rgba(79,169,162,0.15);
   }
 
-  /* ---------- Light table ---------- */
-
   .light-table{
     margin-top: 40px;
     background: var(--table);
@@ -232,8 +230,6 @@
       linear-gradient(to bottom, rgba(232,163,61,0.55) 1px, transparent 1px);
     background-position: -1px -1px;
   }
-
-  /* ---------- Controls ---------- */
 
   .controls{
     margin-top: 20px;
@@ -476,7 +472,6 @@
     font-size: 11px;
   }
 
-  /* ---------- Frame picker ---------- */
 
   .frame-picker{
     margin-top: 20px;
@@ -556,7 +551,6 @@
     text-shadow: 0 0 3px #000;
   }
 
-  /* ---------- Progress ---------- */
 
   .progress-panel{
     margin-top: 20px;
@@ -577,8 +571,6 @@
     background: var(--amber);
     transition: width 0.15s ease;
   }
-
-  /* ---------- Reel / filmstrips ---------- */
 
   .reel{ margin-top: 48px; }
 
@@ -669,8 +661,6 @@
   }
   .filmstrip-download:hover{ background: var(--teal); color: var(--void); }
 
-  /* ---------- Footer ---------- */
-
   footer{
     margin-top: 72px;
     padding-top: 24px;
@@ -683,8 +673,6 @@
   footer a:hover{ color: var(--amber); }
 
   [hidden]{ display: none !important; }
-
-  /* ---------- Responsive ---------- */
 
   @media (max-width: 640px){
     .hero{ padding: 44px 20px 32px; }
@@ -710,7 +698,7 @@
   <header class="hero">
     <h1 class="wordmark">SPRITE<span>//</span>REEL</h1>
     <p class="tagline">Drop a sprite sheet, set the tile size, and walk out with one looping GIF per row — or split the sheet into separate sheets.</p>
-    <div class="privacy-note">RUNS ENTIRELY IN YOUR BROWSER — NOTHING IS UPLOADED</div>
+    <div class="privacy-note">RUNS ENTIRELY IN YOUR BROWSER</div>
   </header>
 
   <div class="load-error" id="loadError" hidden>
@@ -859,8 +847,6 @@
 (function(){
   "use strict";
 
-  // ---------- Resilient library loading ----------
-  //
   // On some hosts (ad-blockers, restrictive networks, or a single flaky
   // CDN edge) a plain <script src="..."> tag can silently fail to load,
   // which used to leave this page half-wired with no explanation. We now
@@ -923,7 +909,7 @@
   document.getElementById('retryLoadBtn').addEventListener('click', boot);
   boot();
 
-  // ---------- Main app (runs once GIF + JSZip are confirmed loaded) ----------
+ 
 
   function initApp(workerSources){
 
@@ -1209,7 +1195,6 @@
   function rebuildFramePicker(cols, rows, tileW, tileH){
     if(state.mode !== 'gif') return;
 
-    // Preserve existing enabled/disabled flags where the grid shape is unchanged.
     const prev = state.frameEnabled;
     const sameShape = prev.length === rows && prev[0] && prev[0].length === cols;
     const enabled = [];
@@ -1680,7 +1665,7 @@
     }, 'image/png');
   });
 
-  } // initApp
+  }
 
 })();
 </script>
